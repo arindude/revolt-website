@@ -70,11 +70,14 @@ img {
   font-size: 17px;
 }
 
-.brand-badge {
-  width: 30px;
-  height: 30px;
+.brand-logo {
+  width: 34px;
+  height: 34px;
   border-radius: 12px;
-  background: var(--brand-gradient);
+  object-fit: contain;
+  background: rgba(25, 208, 124, 0.12);
+  padding: 4px;
+  box-shadow: inset 0 0 0 1px rgba(12, 18, 30, 0.9);
 }
 
 .nav-links {
@@ -303,6 +306,18 @@ button.btn-primary {
   color: var(--muted);
 }
 
+.table-card h5 {
+  margin: 16px 0 6px;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.table-card p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .footer {
   padding: 52px 0 40px;
   color: var(--muted);
@@ -403,6 +418,14 @@ textarea {
   background: var(--surface);
   display: grid;
   gap: 12px;
+}
+
+.team-card img {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .team-card strong {

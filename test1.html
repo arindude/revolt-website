@@ -1,0 +1,281 @@
+<!--
+revolt_static_site/
+├── index.html
+├── contact.html
+├── careers.html
+├── blog.html
+├── privacy.html
+├── about.html
+├── team/
+│   ├── anel.html
+│   ├── mourad.html
+│   ├── jill.html
+│   ├── dan.html
+│   ├── darshan.html
+│   └── natalie.html
+├── assets/
+│   ├── css/style.css
+│   └── js/main.js
+└── assets/img/ (put your images here)
+
+Notes:
+- This is a clean, static scaffold that mirrors the structure of revolt-charging.com so you can freely edit in VS Code and deploy anywhere (GitHub Pages, Netlify, Vercel, etc.).
+- I did NOT copy proprietary/minified Squarespace code. Instead, I rebuilt a lightweight layout you own.
+- Replace placeholder copy with your final text. Drop your images into assets/img and update <img> src paths.
+- The nav/footer are repeated across pages for simplicity. If you prefer DRY, convert to a template engine later.
+- Mobile menu handled by assets/js/main.js.
+-->
+
+<!-- ========== /assets/css/style.css ========== -->
+<style>
+:root{--bg:#0b0f15;--ink:#e8edf6;--muted:#97a3b6;--brand:#19d07c;--card:#121824;--line:#1c2331;--accent:#2ce38f;--danger:#ff5a60}
+*{box-sizing:border-box}html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:block}
+.container{max-width:1120px;margin:0 auto;padding:0 20px}
+.nav{position:sticky;top:0;z-index:50;background:rgba(11,15,21,.9);backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700}
+.brand-badge{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),#0fd9c9)}
+.nav-links{display:flex;gap:18px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:#0d1320;color:var(--ink);font-weight:600}
+.btn:hover{border-color:var(--accent)}
+.btn-primary{background:var(--brand);border-color:transparent;color:#04110a}
+.btn-primary:hover{filter:brightness(1.05)}
+.hero{padding:72px 0 40px;border-bottom:1px solid var(--line);background:radial-gradient(1200px 600px at 70% -40%,rgba(44,227,143,.08),transparent 60%)}
+.hero h1{font-size:44px;line-height:1.05;margin:0 0 16px}
+.hero p{color:var(--muted);max-width:780px;margin:0 0 26px;font-size:18px}
+.grid{display:grid;gap:18px}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.grid-3{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.grid-3{grid-template-columns:1fr}.nav-links{display:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.card h3{margin:0 0 8px}
+.kpis{display:flex;gap:18px;flex-wrap:wrap}
+.kpi{flex:1;min-width:180px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.section{padding:48px 0;border-bottom:1px solid var(--line)}
+.section h2{margin:0 0 10px;font-size:28px}
+.section p{color:var(--muted);margin:0 0 22px}
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--line);font-size:13px;color:var(--muted)}
+.list{display:grid;gap:10px}
+.list li{padding:10px 12px;border:1px dashed var(--line);border-radius:12px;color:var(--muted)}
+.footer{padding:36px 0;color:var(--muted)}
+.footer .cols{display:grid;gap:18px;grid-template-columns:2fr 1fr 1fr}
+@media (max-width:800px){.footer .cols{grid-template-columns:1fr}}
+.input, textarea{width:100%;padding:12px 14px;background:#0c121e;border:1px solid var(--line);border-radius:12px;color:var(--ink)}
+.input:focus, textarea:focus{outline:2px solid var(--accent);border-color:transparent}
+.form-row{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+@media (max-width:700px){.form-row{grid-template-columns:1fr}}
+.small{font-size:13px;color:var(--muted)}
+.bio-head{display:flex;gap:18px;align-items:center}
+.bio-head img{width:88px;height:88px;border-radius:16px;object-fit:cover;border:1px solid var(--line)}
+.table{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.table th,.table td{border-bottom:1px solid var(--line);padding:12px;text-align:left}
+.alert{border:1px solid var(--line);background:#0e1626;border-left:4px solid var(--brand);padding:12px;border-radius:12px}
+</style>
+
+<!-- ========== /assets/js/main.js (inline for demo; move to file in your project) ========== -->
+<script>
+function toggleMenu(){const nav=document.querySelector('.nav-links');nav.style.display = nav.style.display==='flex'?'none':'flex'}
+</script>
+
+<!-- ========= index.html ========= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Re-Volt Charging — From Zero to Charging</title>
+  <meta name="description" content="Re-Volt makes EV charging easy to deploy, manage, and trust across multifamily, commercial, and institutional properties in Massachusetts." />
+  <link rel="icon" href="assets/img/favicon.png" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html"><span class="brand-badge"></span>Re-Volt Charging</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html" class="btn">Contact</a>
+        <a href="contact.html" class="btn btn-primary">Free Onsite Evaluation</a>
+      </nav>
+      <button class="btn" style="display:none" onclick="toggleMenu()">Menu</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <span class="badge">EV Infrastructure • Massachusetts</span>
+      <h1>From Zero to Charging — or Anywhere in Between.</h1>
+      <p>We deploy and manage reliable Level 2 and DC Fast charging where drivers need them most. Ideal for multifamily, commercial, workplace, and institutional properties. We help you capture rebates, stay compliant, and deliver a great charging experience.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="contact.html">Schedule Free Onsite Evaluation</a>
+        <a class="btn" href="#why">Why Re-Volt?</a>
+      </div>
+      <div class="kpis" style="margin-top:24px">
+        <div class="kpi"><div class="small">Focus</div><div><strong>Level 2 + DCFC</strong></div></div>
+        <div class="kpi"><div class="small">Programs</div><div><strong>MassEVIP & Utility Rebates</strong></div></div>
+        <div class="kpi"><div class="small">Model</div><div><strong>Fully Managed, Low Hassle</strong></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" class="section">
+    <div class="container">
+      <h2>Why Choose Re-Volt Charging?</h2>
+      <div class="grid grid-3" style="margin-top:18px">
+        <div class="card">
+          <h3>Rebates That Work</h3>
+          <p>We help you access MassEVIP and utility incentives to reduce CAPEX. For EV‑ready properties, we take you the last mile to fully operational charging.</p>
+        </div>
+        <div class="card">
+          <h3>Long‑Term Value, No Hassle</h3>
+          <p>We can retain charger ownership and manage operations so you benefit without day‑to‑day headaches.</p>
+        </div>
+        <div class="card">
+          <h3>Tenant & Customer Experience</h3>
+          <p>Attract and retain residents, guests, and visitors with dependable charging—aligned to your property’s power and parking reality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Solutions by Property Type</h2>
+      <div class="grid grid-3" style="margin-top:18px">
+        <div class="card"><h3>Multi‑Family</h3><ul class="list"><li>Resident-first charging UX</li><li>Load management</li><li>Revenue share options</li></ul></div>
+        <div class="card"><h3>Commercial / Retail</h3><ul class="list"><li>Attract EV drivers</li><li>Dwell‑time analytics</li><li>Turnkey ops</li></ul></div>
+        <div class="card"><h3>Institutions / Workplace</h3><ul class="list"><li>Employee & fleet support</li><li>Access control</li><li>Reporting</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container cols">
+      <div>
+        <div class="brand"><span class="brand-badge"></span>Re-Volt Charging</div>
+        <p class="small">Massachusetts-based climatetech startup expanding access to EV charging infrastructure.</p>
+      </div>
+      <div>
+        <div class="small">Company</div>
+        <div><a href="about.html">About</a></div>
+        <div><a href="careers.html">Careers</a></div>
+        <div><a href="privacy.html">Privacy</a></div>
+      </div>
+      <div>
+        <div class="small">Get in touch</div>
+        <div><a href="mailto:hello@revolt-charging.com">hello@revolt-charging.com</a></div>
+        <div><a href="contact.html">Contact form</a></div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
+<!-- ========= contact.html ========= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us — Re-Volt Charging</title>
+</head>
+<body>
+  <header class="nav"><div class="container nav-inner"><a class="brand" href="index.html"><span class="brand-badge"></span>Re-Volt Charging</a><nav class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="blog.html">Blog</a><a href="careers.html">Careers</a><a class="btn btn-primary" href="#form">Get Started</a></nav></div></header>
+  <section class="hero"><div class="container"><h1>Let’s Make EV Charging Happen</h1><p>Tell us about your property and goals. We’ll respond within 1–2 business days with next steps and available incentives.</p></div></section>
+  <section id="form" class="section"><div class="container">
+    <div class="grid" style="grid-template-columns:2fr 1fr">
+      <form class="card" onsubmit="event.preventDefault(); alert('Form captured. Connect to your backend or form tool.');">
+        <div class="form-row"><input class="input" placeholder="First name" required><input class="input" placeholder="Last name" required></div>
+        <div class="form-row"><input class="input" type="email" placeholder="Work email" required><input class="input" placeholder="Phone"></div>
+        <input class="input" placeholder="Company / Property" style="margin-top:14px">
+        <textarea class="input" rows="6" placeholder="Tell us about your site (property type, stalls, power, timeline)"></textarea>
+        <label class="small" style="display:flex;gap:8px;align-items:center;margin-top:10px"><input type="checkbox" required> I agree to the <a href="privacy.html">Privacy Policy</a></label>
+        <div style="display:flex;gap:10px;margin-top:12px"><button class="btn btn-primary" type="submit">Submit</button><a class="btn" href="mailto:hello@revolt-charging.com">Email instead</a></div>
+      </form>
+      <aside class="card">
+        <h3>How it works</h3>
+        <ol class="list" style="list-style:decimal inside">
+          <li>Free onsite evaluation</li>
+          <li>Rebates & incentives plan</li>
+          <li>Install & go-live</li>
+          <li>Ongoing management</li>
+        </ol>
+        <div class="alert" style="margin-top:12px"><strong>Heads up:</strong> This is a static form. Hook it up to your backend, Netlify Forms, Formspree, or HubSpot for production.</div>
+      </aside>
+    </div>
+  </div></section>
+  <footer class="footer"><div class="container cols"><div><div class="brand"><span class="brand-badge"></span>Re-Volt Charging</div><p class="small">© <span id="y"></span> Re-Volt Charging</p></div><div><div class="small">Company</div><div><a href="about.html">About</a></div><div><a href="privacy.html">Privacy</a></div></div><div><div class="small">Contact</div><div><a href="mailto:hello@revolt-charging.com">hello@revolt-charging.com</a></div></div></div></footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body></nhtml>
+
+<!-- ========= careers.html ========= -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Careers — Re-Volt Charging</title></head>
+<body>
+<header class="nav"><div class="container nav-inner"><a class="brand" href="index.html"><span class="brand-badge"></span>Re-Volt Charging</a><nav class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="blog.html">Blog</a><a href="careers.html" class="btn">Open Roles</a><a href="contact.html" class="btn btn-primary">Contact</a></nav></div></header>
+<section class="hero"><div class="container"><h1>Join the mission</h1><p>Help expand equitable access to EV charging across Massachusetts. We move fast, iterate, and partner deeply with property owners.</p></div></section>
+<section class="section"><div class="container">
+  <div class="card"><h3>Business Development Lead (Commission-based)</h3><p class="small">Boston / Massachusetts • Remote/Hybrid</p><ul class="list"><li>Own site acquisition and partnerships</li><li>Navigate incentive programs and permitting</li><li>Build and manage pipeline in HubSpot</li></ul><div style="display:flex;gap:10px;margin-top:10px"><a class="btn btn-primary" href="mailto:careers@revolt-charging.com?subject=Business%20Development%20Lead">Apply</a><a class="btn" href="contact.html">Refer a candidate</a></div></div>
+</div></section>
+<footer class="footer"><div class="container cols"><div><div class="brand"><span class="brand-badge"></span>Re-Volt Charging</div><p class="small">We’re an equal opportunity employer.</p></div><div><div class="small">Company</div><div><a href="privacy.html">Privacy</a></div><div><a href="about.html">About</a></div></div><div><div class="small">Contact</div><div><a href="mailto:careers@revolt-charging.com">careers@revolt-charging.com</a></div></div></div></footer>
+</body></html>
+
+<!-- ========= blog.html ========= -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blog — Re-Volt Charging</title></head>
+<body>
+<header class="nav"><div class="container nav-inner"><a class="brand" href="index.html"><span class="brand-badge"></span>Re-Volt Charging</a><nav class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="blog.html" class="btn">Blog</a><a href="careers.html">Careers</a><a href="contact.html" class="btn btn-primary">Contact</a></nav></div></header>
+<section class="hero"><div class="container"><h1>Insights</h1><p>Updates on EV infrastructure, rebates, and property‑owner playbooks.</p></div></section>
+<section class="section"><div class="container grid grid-3">
+  <article class="card"><h3>Charging the Future with Fast Charging EV Stations</h3><p class="small">Posted — Sample post</p><p>As the world embraces EVs, the demand for fast, reliable charging grows. Here’s how properties can evaluate load, incentives, and ROI.</p><a class="btn" href="#">Read</a></article>
+  <article class="card"><h3>MassEVIP 101 for Multi‑Family</h3><p class="small">Guide</p><p>What you need for eligibility, how funding works, and a simple timeline from application to go‑live.</p><a class="btn" href="#">Read</a></article>
+  <article class="card"><h3>Designing for Driver Experience</h3><p class="small">Playbook</p><p>Payments, access control, signage, and better uptime—without adding operational drag.</p><a class="btn" href="#">Read</a></article>
+</div></section>
+<footer class="footer"><div class="container cols"><div><div class="brand"><span class="brand-badge"></span>Re-Volt Charging</div><p class="small">© <span id="y2"></span> Re-Volt Charging</p></div><div><div class="small">Company</div><div><a href="privacy.html">Privacy</a></div></div><div><div class="small">Contact</div><div><a href="mailto:hello@revolt-charging.com">hello@revolt-charging.com</a></div></div></div></footer>
+<script>document.getElementById('y2').textContent=new Date().getFullYear()</script>
+</body></html>
+
+<!-- ========= privacy.html ========= -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Privacy Policy — Re-Volt Charging</title></head>
+<body>
+<header class="nav"><div class="container nav-inner"><a class="brand" href="index.html"><span class="brand-badge"></span>Re-Volt Charging</a><nav class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="blog.html">Blog</a><a href="careers.html">Careers</a><a href="contact.html" class="btn">Contact</a></nav></div></header>
+<section class="hero"><div class="container"><h1>Privacy Policy</h1><p>This sample policy is a placeholder. Replace with your legal text or link your third‑party policy tool.</p></div></section>
+<section class="section"><div class="container"><div class="card"><p class="small">Example only — not legal advice.</p><h3>Information We Collect</h3><p>Contact details you provide via forms or email; site usage analytics.</p><h3>How We Use It</h3><p>To respond to inquiries, provide services, and improve our website.</p><h3>Your Choices</h3><p>Email us at privacy@revolt-charging.com for data requests.</p></div></div></section>
+<footer class="footer"><div class="container cols"><div><div class="brand"><span class="brand-badge"></span>Re-Volt Charging</div><p class="small">© <span id="y3"></span> Re-Volt Charging</p></div><div><div class="small">Company</div><div><a href="about.html">About</a></div><div><a href="contact.html">Contact</a></div></div><div><div class="small">Policies</div><div><a href="#">Terms</a></div></div></div></footer>
+<script>document.getElementById('y3').textContent=new Date().getFullYear()</script>
+</body></html>
+
+<!-- ========= about.html ========= -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>About — Re-Volt Charging</title></head>
+<body>
+<header class="nav"><div class="container nav-inner"><a class="brand" href="index.html"><span class="brand-badge"></span>Re-Volt Charging</a><nav class="nav-links"><a href="index.html">Home</a><a href="about.html" class="btn">About</a><a href="blog.html">Blog</a><a href="careers.html">Careers</a><a href="contact.html" class="btn btn-primary">Contact</a></nav></div></header>
+<section class="hero"><div class="container"><h1>About Us</h1><p>Meet the team building equitable EV infrastructure for Massachusetts.</p></div></section>
+<section class="section"><div class="container grid grid-3">
+  <a class="card" href="team/anel.html"><h3>Anel Bellevue</h3><p class="small">Co‑founder & CEO</p></a>
+  <a class="card" href="team/mourad.html"><h3>Mourad</h3><p class="small">Co‑founder & CBO</p></a>
+  <a class="card" href="team/dan.html"><h3>Dan Holzer</h3><p class="small">Principal Engineer</p></a>
+  <a class="card" href="team/jill.html"><h3>Jill Knebel</h3><p class="small">Executive Director, Finance & Initiatives</p></a>
+  <a class="card" href="team/darshan.html"><h3>Darshan Amin</h3><p class="small">Chief of Staff</p></a>
+  <a class="card" href="team/natalie.html"><h3>Natalie Haddad</h3><p class="small">Deputy Chief of Staff</p></a>
+</div></section>
+<footer class="footer"><div class="container cols"><div><div class="brand"><span class="brand-badge"></span>Re-Volt Charging</div><p class="small">We partner with property owners to deliver great charging experiences.</p></div><div><div class="small">Company</div><div><a href="careers.html">Careers</a></div><div><a href="privacy.html">Privacy</a></div></div><div><div class="small">Contact</div><div><a href="mailto:hello@revolt-charging.com">hello@revolt-charging.com</a></div></div></div></footer>
+</body></html>
+
+<!-- ========= team/*.html (example: Anel) ========= -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Anel Bellevue — Re-Volt Charging</title></head>
+<body>
+<header class="nav"><div class="container nav-inner"><a class="brand" href="../index.html"><span class="brand-badge"></span>Re-Volt Charging</a><nav class="nav-links"><a href="../about.html">About</a><a href="../blog.html">Blog</a><a href="../careers.html">Careers</a><a href="../contact.html" class="btn btn-primary">Contact</a></nav></div></header>
+<section class="section"><div class="container">
+  <div class="bio-head"><img src="../assets/img/anel.jpg" alt="Anel Bellevue"><div><h1>Anel Bellevue</h1><p class="small">Co‑founder & CEO</p></div></div>
+  <div class="card" style="margin-top:16px"><p>Short bio placeholder. Replace with your official bio text.</p></div>
+</div></section>
+<footer class="footer"><div class="container cols"><div><div class="brand"><span class="brand-badge"></span>Re-Volt Charging</div><p class="small">© <span id="y4"></span> Re-Volt Charging</p></div><div><div class="small">Company</div><div><a href="../privacy.html">Privacy</a></div></div><div><div class="small">Back</div><div><a href="../about.html">Meet the team</a></div></div></div></footer>
+<script>document.getElementById('y4').textContent=new Date().getFullYear()</script>
+</body></nhtml>
+
+<!-- Duplicate the above team page for mourad.html, jill.html, dan.html, darshan.html, natalie.html and update names/images/roles. -->
